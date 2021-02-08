@@ -11,4 +11,12 @@ db = SQLAlchemy(app)
 def index():
     result = db.session.execute("SELECT COUNT(*) FROM recipes")
     count = result.fetchone()[0]
-    return render_template("index.html", count=count)
+    result = db.session.execute("SELECT * FROM recipes")
+    recipes = result.fetchall()
+    return render_template("index.html", count=count, recipes=recipes)
+
+@app.route("/resepti/<int:id>")
+def page(id):
+    result = db.session.execute("SELECT name FROM recipes WHERE id='"+str(id)+"'")
+    name = result.fetchone()[0]
+    return render_template("recipe.html", name=name)
