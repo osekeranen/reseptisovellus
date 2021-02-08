@@ -6,5 +6,21 @@
   </head>
   <body>
     <h1>{{ name }}</h1>
+    <div>
+        <p>Ainekset:</p>
+        <ul>
+            {% for ingredient in ingredients %}
+            <li> {{ ingredient[3] }} {{ ingredient[4] }} {{ ingredient[5] }}
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <p>Ohjeet:</p>
+        <ol>
+            {% for step in steps %}
+            <li> {{ step[4] }}
+            {% endfor %}
+        </ol>
+    </div>
   </body>
 </html>
