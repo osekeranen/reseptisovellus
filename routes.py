@@ -24,6 +24,34 @@ def recipe(id):
 def new_recipe():
     return render_template("new_recipe.html")
 
+@app.route("/uusi/resepti/lisaa", methods=["POST"])
+def create_recipe():
+    name = request.form["name"]
+    sql = "INSERT INTO recipes (name) VALUES (:name) RETURNING id"
+    result = db.session.execute(sql, {"name":name})
+    recipe_id = result.fetchone()[0]
+    ingredients = request.form.getlist("ingredient")
+    for string in ingredients:
+        if string != "":
+            amount = string.split()[0]
+            measurement = string.split()[1]
+            result = db.session.execute("SELECT id FROM measurements WHERE abbreviation='" + measurement + "'")
+            measurement_id = result.fetchone()[0]
+            ingredient = string.split()[2]
+            result = db.session.execute("SELECT id FROM ingredients WHERE partitive='" + ingredient + "'")
+            ingredient_id = result.fetchone()[0]
+            sql = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, measurement_id, amount) VALUES (" + str(recipe_id) + ", " + str(ingredient_id) + ", " + str(measurement_id) + ", " + str(amount) + ")"
+            db.session.execute(sql)
+    steps = request.form.getlist("step")
+    i = 1
+    for string in steps:
+        if string != "":
+            sql = "INSERT INTO recipes_steps (recipe_id, description, step) VALUES (" + str(recipe_id) + ", '" + string + "', " + str(i) + ")"
+            db.session.execute(sql)
+            i += 1
+    db.session.commit()
+    return render_template("/")
+
 @app.route("/uusi/ainesosa")
 def new_ingredient():
     return render_template("new_ingredient.html")

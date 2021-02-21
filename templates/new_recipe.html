@@ -5,6 +5,28 @@
     <title>Uusi resepti</title>
   </head>
   <body>
-      
+    <form action="/uusi/resepti/lisaa" method="POST">
+      <p>
+          Reseptin nimi:
+          <input type="text" name="name">
+      </p>
+      <hr>
+      <div>
+          <p>
+              Ainesosat:
+          </p>
+          {% for i in range(1,13) %}
+          <p><input type="text" name="ingredient"></p>
+          {% endfor %}
+      </div>
+      <hr>
+      <div>
+          Välivaiheet:
+          {% for i in range(1,13) %}
+          <p>{{i}}. <input type="text" name="step"></p>
+          {% endfor %}
+      </div>
+      <input type="submit" value="Lisää">
+    </form>
   </body>
 </html>
