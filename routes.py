@@ -23,3 +23,9 @@ def page(id):
 @app.route("/uusi")
 def new_recipe():
     return render_template("new_recipe.html")
+
+@app.route("/mitat.csv")
+def get_measurements():
+    result = db.session.execute("SELECT name, abbreviation FROM measurements")
+    measurements = result.fetchall()
+    return render_template("csv.html", title="mitat", list=measurements)
