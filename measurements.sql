@@ -27,6 +27,10 @@ SELECT 'kilogramma', 'kg'
 WHERE NOT EXISTS (SELECT 1 FROM measurements WHERE name='kilogramma');
 
 INSERT INTO measurements (name, abbreviation)
+SELECT 'kappale', 'kpl'
+WHERE NOT EXISTS (SELECT 1 FROM measurements WHERE name='kappale');
+
+INSERT INTO measurements (name, abbreviation)
 SELECT 'pussi', 'pss'
 WHERE NOT EXISTS (SELECT 1 FROM measurements WHERE name='pussi');
 
