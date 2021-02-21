@@ -2,7 +2,7 @@
 
 ## Yleistä
 
-Reseptisovellus on tällä hetkellä alkukantainen ja käyttöliittymältään karu reseptien hallintasovellus. [Herokussa](https://retsept-app.herokuapp.com/) sovelluksella ei tällä hetkellä juurikaan kykene leikkimään, sillä sovellukseen ei ole luotu vielä uusien reseptien luomisominaisuutta (reseptejä se kuitenkin jo tulostaa hyvin, mikäli haluat kokeilla omalla tietokoneellasi). Sovelluksen [tietokantarakenne](https://github.com/osekeranen/reseptisovellus/blob/main/database.md) on luotu siten että reseptit tallenetaan paloittain tietokantaan, eikä yksittäisenä html-tiedostona, kuten tämän kaltaisissa muissa sovelluksissa. Etuna tässä on että sovellukseen voi luoda erinomaiset hakuominaisuudet, joissa reseptejä voi hakea erinäisten ominaisuuksien, kuten yksittäisten ainesosien avulla.
+Reseptisovellus on tällä hetkellä vielä hieman alkukantainen ja käyttöliittymältään karu reseptien hallintasovellus. [Herokussa](https://retsept-app.herokuapp.com/) sovellukseen voi lisätä reseptejä käyttämällä uusi resepti nappia. Huomaa että sovellukseen ei ole vielä tehty virheenhallintaa vaan ainekset tulee luetella muodossa "määrä mittayksikkö ainesosa" ja mittayksiköiden ja ainesosien tulee olla jo ennalta luotuja. Lisäksi mittayksiköitä käyttäessä tulee käyttää lyhenteitä, jotka löydät sivun alalaidasta ja ainesosia määritellessä partitiivia, jotka löytyy myös sivun alalaidasta.
 
 ## Suunnitellut ominaisuudet
 
