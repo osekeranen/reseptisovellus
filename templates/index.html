@@ -6,14 +6,26 @@
   </head>
   <body>
     <h1>Tervetuloa reseptisovellukseen!</h1>
-    <p>Reseptejä: {{ count }}</p>
+    <p>
+      Reseptejä: {{count}}
+      |
+      <a href="/uusi/resepti"> Uusi resepti</a>
+      |
+      <a href="/uusi/ainesosa"> Uusi ainesosa</a>
+    </p>
     <hr>
     <div>
         <ul>
             {% for recipe in recipes %}
-            <li><a href="/resepti/{{ recipe[0] }}">{{ recipe[1] }}</a>
+            <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
             {% endfor %}
         </ul>
     </div>
+    <hr>
+    <p>
+      <a href="/ainesosat.csv"> Ainesosat</a>
+      |
+      <a href="/mittayksikot.csv"> Mittayksiköt</a>
+    </p>
   </body>
 </html>

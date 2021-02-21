@@ -47,7 +47,7 @@ def get_ingredients():
     measurements = result.fetchall()
     return render_template("csv.html", title="ainesosat", list=measurements)
 
-@app.route("/mitat.csv")
+@app.route("/mittayksikot.csv")
 def get_measurements():
     result = db.session.execute("SELECT name, abbreviation FROM measurements")
     measurements = result.fetchall()
