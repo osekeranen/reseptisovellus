@@ -1,6 +1,6 @@
 from app import app
 from db import db
-from flask import render_template, request
+from flask import render_template, request, redirect
 
 @app.route("/")
 def index():
@@ -28,9 +28,18 @@ def new_recipe():
 def new_ingredient():
     return render_template("new_ingredient.html")
 
+@app.route("/uusi/ainesosa/lisaa", methods=["POST"])
+def create_ingredient():
+    ingredient = request.form["ingredient"]
+    partitive = request.form["partitive"]
+    sql = "INSERT INTO ingredients (name, partitive) SELECT '" + ingredient + "', '" + partitive + "' WHERE NOT EXISTS (SELECT 1 FROM ingredients WHERE name='" + ingredient + "')"
+    db.session.execute(sql)
+    db.session.commit()
+    return redirect("/")
+
 @app.route("/uusi/ainesosa/lisatty", methods=["POST"])
 def new_ingredient_result():
-    return render_template("ingredient_result.html", ingredient=request.form["ingredient"], partitive=request.form["partitive"])
+    return render_template("ingredient_result.html")
 
 @app.route("/ainesosat.csv")
 def get_ingredients():
