@@ -14,9 +14,9 @@ def index():
 def recipe(id):
     result = db.session.execute("SELECT name FROM recipes WHERE id="+str(id))
     name = result.fetchone()[0]
-    result = db.session.execute("SELECT recipes.id, recipes_steps.step, recipes_steps.description, steps_ingredients.amount, measurements.abbreviation, ingredients.partitive FROM recipes LEFT JOIN recipes_steps ON recipes.id = recipes_steps.recipe_id LEFT JOIN steps_ingredients ON recipes_steps.id = steps_ingredients.step_id LEFT JOIN measurements ON steps_ingredients.measurement_id = measurements.id LEFT JOIN ingredients ON steps_ingredients.ingredient_id = ingredients.id WHERE recipes.id="+str(id))
+    result = db.session.execute("SELECT recipes.id, recipes_ingredients.amount, measurements.abbreviation, ingredients.partitive FROM recipes LEFT JOIN recipes_ingredients ON recipes.id = recipes_ingredients.recipe_id LEFT JOIN measurements ON recipes_ingredients.measurement_id = measurements.id LEFT JOIN ingredients ON recipes_ingredients.ingredient_id = ingredients.id WHERE recipes.id="+str(id))
     ingredients = result.fetchall()
-    result = db.session.execute("SELECT recipes.id, recipes_steps.step, recipes_steps.description, recipes_substeps.step, recipes_substeps.description FROM recipes LEFT JOIN recipes_steps ON recipes.id = recipes_steps.recipe_id LEFT JOIN recipes_substeps ON recipes_steps.id = recipes_substeps.step_id WHERE recipes.id="+str(id))
+    result = db.session.execute("SELECT recipes.id, recipes_steps.step, recipes_steps.description FROM recipes LEFT JOIN recipes_steps ON recipes.id = recipes_steps.recipe_id WHERE recipes.id="+str(id))
     steps = result.fetchall()
     return render_template("recipe.html", name=name, ingredients=ingredients, steps=steps)
 
@@ -50,7 +50,7 @@ def create_recipe():
             db.session.execute(sql)
             i += 1
     db.session.commit()
-    return render_template("/")
+    return redirect("/")
 
 @app.route("/uusi/ainesosa")
 def new_ingredient():
