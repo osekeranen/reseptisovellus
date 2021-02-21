@@ -32,6 +32,12 @@ def new_ingredient():
 def new_ingredient_result():
     return render_template("ingredient_result.html", ingredient=request.form["ingredient"], partitive=request.form["partitive"])
 
+@app.route("/ainesosat.csv")
+def get_ingredients():
+    result = db.session.execute("SELECT name, partitive FROM ingredients")
+    measurements = result.fetchall()
+    return render_template("csv.html", title="ainesosat", list=measurements)
+
 @app.route("/mitat.csv")
 def get_measurements():
     result = db.session.execute("SELECT name, abbreviation FROM measurements")
