@@ -35,11 +35,7 @@ def create_ingredient():
     sql = "INSERT INTO ingredients (name, partitive) SELECT '" + ingredient + "', '" + partitive + "' WHERE NOT EXISTS (SELECT 1 FROM ingredients WHERE name='" + ingredient + "')"
     db.session.execute(sql)
     db.session.commit()
-    return redirect("/uusi/ainesosa/lisatty")
-
-@app.route("/uusi/ainesosa/lisatty")
-def new_ingredient_result():
-    return render_template("ingredient_result.html")
+    return redirect("/")
 
 @app.route("/ainesosat.csv")
 def get_ingredients():
