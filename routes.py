@@ -19,3 +19,7 @@ def page(id):
     result = db.session.execute("SELECT recipes.id, recipes_steps.step, recipes_steps.description, recipes_substeps.step, recipes_substeps.description FROM recipes LEFT JOIN recipes_steps ON recipes.id = recipes_steps.recipe_id LEFT JOIN recipes_substeps ON recipes_steps.id = recipes_substeps.step_id WHERE recipes.id="+str(id))
     steps = result.fetchall()
     return render_template("recipe.html", name=name, ingredients=ingredients, steps=steps)
+
+@app.route("/uusi")
+def new_recipe():
+    return render_template("new_recipe.html")
