@@ -12,10 +12,15 @@ def index():
 
 @app.route("/haku")
 def query():
+    by = request.args["contains"]
     query = request.args["query"]
-    sql = "SELECT * FROM recipes WHERE name ILIKE :query"
+    if by == "name":
+        sql = "SELECT * FROM recipes WHERE name ILIKE :query"
+    if by == "ingredient":
+        sql = "SELECT recipes.id, recipes.name, ingredients.name FROM recipes LEFT JOIN recipes_ingredients ON recipes.id = recipes_ingredients.recipe_id LEFT JOIN ingredients ON recipes_ingredients.ingredient_id = ingredients.id WHERE ingredients.name ILIKE :query"
     result = db.session.execute(sql, {"query":"%"+query+"%"})
     recipes = result.fetchall()
+    query = request.args["query"]
     return render_template("result.html", recipes=recipes)
 
 @app.route("/resepti/<int:id>")

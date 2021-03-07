@@ -4,6 +4,12 @@
 <form action="/haku" method="GET">
   Hae reseptiä: <input type="text" name="query">
   <input type="submit" value="Hae">
+  <div>
+    <input type="radio" id="containsName" name="contains" value="name" checked>
+    <label for="containsName">Nimen mukaan</label>
+    <input type="radio" id="containsIngredient" name="contains" value="ingredient">
+    <label for="containsIngredient">Ainesosien mukaan</label>
+  </div>
 </form>
 <hr>
 <p>
