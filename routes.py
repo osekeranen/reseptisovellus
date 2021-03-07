@@ -13,7 +13,7 @@ def index():
 @app.route("/haku")
 def query():
     query = request.args["query"]
-    sql = "SELECT * FROM recipes WHERE name LIKE :query"
+    sql = "SELECT * FROM recipes WHERE name ILIKE :query"
     result = db.session.execute(sql, {"query":"%"+query+"%"})
     recipes = result.fetchall()
     return render_template("result.html", recipes=recipes)
