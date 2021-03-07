@@ -6,6 +6,11 @@
   </head>
   <body>
     <h1>Tervetuloa reseptisovellukseen!</h1>
+    <form action="/haku" method="GET">
+      Hae reseptiä: <input type="text" name="query">
+      <input type="submit" value="Hae">
+    </form>
+    <hr>
     <p>
       Reseptejä: {{count}}
       |

@@ -10,6 +10,14 @@ def index():
     recipes = result.fetchall()
     return render_template("index.html", count=count, recipes=recipes)
 
+@app.route("/haku")
+def query():
+    query = request.args["query"]
+    sql = "SELECT * FROM recipes WHERE name LIKE :query"
+    result = db.session.execute(sql, {"query":"%"+query+"%"})
+    recipes = result.fetchall()
+    return render_template("result.html", recipes=recipes)
+
 @app.route("/resepti/<int:id>")
 def recipe(id):
     result = db.session.execute("SELECT name FROM recipes WHERE id="+str(id))

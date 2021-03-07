@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Haku</title>
+  </head>
+  <body>
+    <div>
+      Haun tulos:
+      <ul>
+        {% for recipe in recipes %}
+        <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
