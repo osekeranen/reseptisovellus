@@ -1,32 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Uusi resepti</title>
-  </head>
-  <body>
-    <form action="/uusi/resepti/lisaa" method="POST">
+{% extends "layout.html" %}
+{% block title %}Uusi resepti{% endblock %}
+{% block content %}
+<h2>Lisää uusi resepti</h2>
+<form action="/uusi/resepti/lisaa" method="POST">
+  <p>
+      Reseptin nimi:
+      <input type="text" name="name">
+  </p>
+  <hr>
+  <div>
       <p>
-          Reseptin nimi:
-          <input type="text" name="name">
+          Ainesosat:
       </p>
-      <hr>
-      <div>
-          <p>
-              Ainesosat:
-          </p>
-          {% for i in range(1,13) %}
-          <p><input type="text" name="ingredient"></p>
-          {% endfor %}
-      </div>
-      <hr>
-      <div>
-          Välivaiheet:
-          {% for i in range(1,13) %}
-          <p>{{i}}. <input type="text" name="step"></p>
-          {% endfor %}
-      </div>
-      <input type="submit" value="Lisää">
-    </form>
-  </body>
-</html>
+      {% for i in range(1,13) %}
+      <p><input type="text" name="ingredient"></p>
+      {% endfor %}
+  </div>
+  <hr>
+  <div>
+      Välivaiheet:
+      {% for i in range(1,13) %}
+      <p>{{i}}. <input type="text" name="step"></p>
+      {% endfor %}
+  </div>
+  <input type="submit" value="Lisää">
+</form>
+{% endblock %}

@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Reseptisovellus</title>
-  </head>
-  <body>
-    <h1>Tervetuloa reseptisovellukseen!</h1>
-    <form action="/haku" method="GET">
-      Hae reseptiä: <input type="text" name="query">
-      <input type="submit" value="Hae">
-    </form>
-    <hr>
-    <p>
-      Reseptejä: {{count}}
-      |
-      <a href="/uusi/resepti"> Uusi resepti</a>
-      |
-      <a href="/uusi/ainesosa"> Uusi ainesosa</a>
-    </p>
-    <hr>
-    <div>
-        <ul>
-            {% for recipe in recipes %}
-            <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
-            {% endfor %}
-        </ul>
-    </div>
-    <hr>
-    <p>
-      <a href="/ainesosat.csv"> Ainesosat</a>
-      |
-      <a href="/mittayksikot.csv"> Mittayksiköt</a>
-    </p>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Reseptisovellus{% endblock %}
+{% block content %}
+<form action="/haku" method="GET">
+  Hae reseptiä: <input type="text" name="query">
+  <input type="submit" value="Hae">
+</form>
+<hr>
+<p>
+  Reseptejä: {{count}}
+  |
+  <a href="/uusi/resepti"> Uusi resepti</a>
+  |
+  <a href="/uusi/ainesosa"> Uusi ainesosa</a>
+</p>
+<hr>
+<div>
+  <ul>
+      {% for recipe in recipes %}
+      <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
+      {% endfor %}
+  </ul>
+</div>
+<hr>
+<p>
+  <a href="/ainesosat.csv"> Ainesosat</a>
+  |
+  <a href="/mittayksikot.csv"> Mittayksiköt</a>
+</p>
+{% endblock %}

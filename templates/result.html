@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title>Haku</title>
-  </head>
-  <body>
-    <div>
-      Haun tulos:
-      <ul>
-        {% for recipe in recipes %}
-        <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
-        {% endfor %}
-      </ul>
-    </div>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Haku{% endblock %}
+{% block content %}
+<h2>Haun tulos</h2>
+<ul>
+  {% for recipe in recipes %}
+  <li><a href="/resepti/{{recipe[0]}}"> {{recipe[1]}}</a>
+  {% endfor %}
+</ul>
+{% endblock %}

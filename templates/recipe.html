@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{name}}</title>
-  </head>
-  <body>
-    <h1>{{name}}</h1>
-    <div>
-        <p>Ainekset:</p>
-        <ul>
-            {% for ingredient in ingredients %}
-            <li> {{ingredient[1]}} {{ingredient[2]}} {{ingredient[3]}}
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <p>Ohjeet:</p>
-        <ol>
-            {% for step in steps %}
-            <li> {{step[2]}}
-            {% endfor %}
-        </ol>
-    </div>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block title %}{{name}}{% endblock %}
+{% block content %}
+<h2>{{name}}</h2>
+<div>
+  <p>Ainekset:</p>
+  <ul>
+      {% for ingredient in ingredients %}
+      <li> {{ingredient[1]}} {{ingredient[2]}} {{ingredient[3]}}
+      {% endfor %}
+  </ul>
+</div>
+<div>
+  <p>Ohjeet:</p>
+  <ol>
+      {% for step in steps %}
+      <li> {{step[2]}}
+      {% endfor %}
+  </ol>
+</div>
+{% endblock %}
